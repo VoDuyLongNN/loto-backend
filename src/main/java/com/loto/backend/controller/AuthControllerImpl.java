@@ -1,7 +1,9 @@
 package com.loto.backend.controller;
 
 import com.loto.backend.controller.interfaces.IAuthController;
+import com.loto.backend.request.LoginRequest;
 import com.loto.backend.request.RegisterRequest;
+import com.loto.backend.response.LoginResponse;
 import com.loto.backend.response.ResponseObject;
 import com.loto.backend.service.interfaces.IAuthService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,5 +21,11 @@ public class AuthControllerImpl implements IAuthController {
     @PostMapping("register")
     public ResponseObject register(@RequestBody RegisterRequest registerRequest) {
         return authService.register(registerRequest);
+    }
+
+    @Override
+    @PostMapping("login")
+    public LoginResponse login(@RequestBody LoginRequest loginRequest) {
+        return authService.login(loginRequest);
     }
 }

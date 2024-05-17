@@ -8,6 +8,7 @@ import io.jsonwebtoken.Jwts;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import javax.crypto.SecretKey;
 import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
@@ -18,7 +19,7 @@ import java.util.function.Function;
 @Service
 @Data
 public class JwtService {
-    private final String SECRET_KEY = "462884FCD356AE84BE6F1125725BF";
+    private final String SECRET_KEY = "462884FCD356AE84BE6F1125725BF462884FCD356AE84BE6F1125725BF";
 
     public String generateToken(User userDetails) {
         return generateToken(new HashMap<>(), userDetails);
@@ -29,6 +30,7 @@ public class JwtService {
         extraClaims.put("UserID", userDetails.getId());
         ZonedDateTime expirationTime = ZonedDateTime.now().plus(24, ChronoUnit.HOURS);
         Date exprire = Date.from(expirationTime.toInstant());
+
 
         return Jwts.builder()
                 .setClaims(extraClaims)
