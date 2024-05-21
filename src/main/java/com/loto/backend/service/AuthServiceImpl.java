@@ -35,9 +35,6 @@ public class AuthServiceImpl implements IAuthService{
             var user = User.builder()
                     .email(request.getEmail())
                     .password(new BCryptPasswordEncoder().encode(request.getPassword()))
-                    .name(request.getName())
-                    .gender(request.getGender())
-                    .phone(request.getPhone())
                     .role("USER")
                     .build();
 
@@ -61,6 +58,7 @@ public class AuthServiceImpl implements IAuthService{
 
             Date expire = jwtService.getExpirationTimeFromToken(jwtToken, jwtService.getSECRET_KEY());
 
+            response.setUserID(user.getId());
             response.setToken(jwtToken);
             response.setStatus("200");
             response.setExpirartionTime(expire);

@@ -1,5 +1,6 @@
 package com.loto.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,17 +32,12 @@ public class User implements UserDetails {
     @Column(name = "password")
     String password;
 
-    @Column(name = "name")
-    String name;
-
-    @Column(name = "gender")
-    String gender;
-
-    @Column(name = "phone")
-    String phone;
-
     @Column(name = "role")
     String role;
+
+    @OneToOne(mappedBy = "user")
+    @JsonManagedReference(value = "reference-user-customer")
+    private Customer customer;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -12,6 +12,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LoginResponse {
+    private Integer UserID;
     private String status;
     private String token;
     private Date expirartionTime;
