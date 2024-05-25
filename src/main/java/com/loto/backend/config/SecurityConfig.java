@@ -33,6 +33,7 @@ public class SecurityConfig {
         return httpSecurity.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/auth/login", "/auth/register").permitAll()
+//                        .requestMatchers("/rooms/**").authenticated()
                         .anyRequest().authenticated()
                 )
                 .cors(cors -> {
